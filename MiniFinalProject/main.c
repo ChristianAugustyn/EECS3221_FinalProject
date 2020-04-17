@@ -142,7 +142,7 @@ void c_scan(int *cylinders, int head, int len)
     fprintf(out, "\nTotal head movement for C_SCAN = %d", total_moves);
     fclose(out);
 }
-
+/*
 void selectionSort(int *arr, int n)
 {
     int id;
@@ -160,25 +160,26 @@ void selectionSort(int *arr, int n)
         swap_values((arr + id), (arr + i));
     }
 }
+*/
 
 void heapify(int *arr, int len, int i)
 {
-    int root = i;
-    int l_child = 2 * i + 1;
     int r_child = 2 * i + 2;
-
-    if (l_child < len && *(arr + l_child) > *(arr + root))
+    int l_child = 2 * i + 1;
+    int parent = i;
+    
+    if (l_child < len && *(arr + l_child) > *(arr + parent))
     {
-        root = l_child;
+        parent = l_child;
     }
-    if (r_child < len && *(arr + r_child) > *(arr + root))
+    if (r_child < len && *(arr + r_child) > *(arr + parent))
     {
-        root = r_child;
+        parent = r_child;
     }
-    if (root != i) 
+    if (parent != i) 
     {
-        swap_values((arr + i), (arr + root));
-        heapify(arr, len, root);
+        swap_values((arr + i), (arr + parent));
+        heapify(arr, len, parent);
     }
 }
 
