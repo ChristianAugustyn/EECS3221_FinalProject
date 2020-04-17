@@ -8,6 +8,8 @@ void fcfs(int *cylinders, int head, int len);
 void scan(int *cylinders, int head, int len);
 void c_scan(int *cylinders, int head, int len);
 void selectionSort(int *arr, int n);
+void heap_sort(int *arr, int len);
+void heapify(int *arr, int len, int i);
 void swap_values(int *i, int *j);
 void print_arr(int *arr, int len);
 
@@ -31,7 +33,7 @@ int main(int argc, int *argv[]) {
     fclose(in);
 
     fcfs(cylinders, head, c);
-    selectionSort(cylinders, c);
+    heap_sort(cylinders, c);
     scan(cylinders, head, c);
     c_scan(cylinders, head, c);
     return 0;
@@ -157,6 +159,41 @@ void selectionSort(int *arr, int n)
         }
         swap_values((arr + id), (arr + i));
     }
+}
+
+void heapify(int *arr, int len, int i)
+{
+    int root = i;
+    int l_child = 2 * i + 1;
+    int r_child = 2 * i + 2;
+
+    if (l_child < len && *(arr + l_child) > *(arr + root))
+    {
+        root = l_child;
+    }
+    if (r_child < len && *(arr + r_child) > *(arr + root))
+    {
+        root = r_child;
+    }
+    if (root != i) 
+    {
+        swap_values((arr + i), (arr + root));
+        heapify(arr, len, root);
+    }
+}
+
+void heap_sort(int *arr, int len)
+{
+    for (int i = len / 2 - 1; i >= 0; i--)
+    {
+        heapify(arr, len, i);
+    }
+    for (int i = len - 1; i > 0; i--)
+    {
+        swap_values((arr + 0), (arr + i));
+        heapify(arr, i, 0);
+    }
+
 }
 
 void swap_values(int *i, int *j)

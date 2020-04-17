@@ -21,6 +21,7 @@ you can clean the directory as well using:
 ```bash
 make clean
 ```
-
+## Extra
+I ran the make file on the Virtual machine and it compiled and wrote to the output file correctly, if any issues please contact me at chrisaug@my.yorku.ca
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
