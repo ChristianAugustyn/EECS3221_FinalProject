@@ -7,7 +7,6 @@
 void fcfs(int *cylinders, int head, int len);
 void scan(int *cylinders, int head, int len);
 void c_scan(int *cylinders, int head, int len);
-void selectionSort(int *arr, int n);
 void heap_sort(int *arr, int len);
 void heapify(int *arr, int len, int i);
 void swap_values(int *i, int *j);
@@ -129,38 +128,21 @@ void c_scan(int *cylinders, int head, int len)
         total_moves += abs(head - *(right + i));
         head = *(right + i);
     }
-    total_moves += abs(head - CYLINDER_MAX );
-    head = CYLINDER_MAX ;
-    total_moves += head;
-    head = 0;
-    for (int i = 0; i < lc; i++) //go accross the left array
-    {
-        fprintf(out, "\n%d", *(left + i));
-        total_moves += abs(head - *(left + i));
-        head = *(left + i);
+    if (lc > 0) {
+        total_moves += abs(head - CYLINDER_MAX );
+        head = CYLINDER_MAX ;
+        total_moves += head;
+        head = 0;
+        for (int i = 0; i < lc; i++) //go accross the left array
+        {
+            fprintf(out, "\n%d", *(left + i));
+            total_moves += abs(head - *(left + i));
+            head = *(left + i);
+        }
     }
     fprintf(out, "\nTotal head movement for C_SCAN = %d", total_moves);
     fclose(out);
 }
-/*
-void selectionSort(int *arr, int n)
-{
-    int id;
-
-    for (int i = 0; i < n - 1; i++)
-    {
-        id = i;
-        for (int j = i + 1; j < n; j++)
-        {
-            if (*(arr + j) < *(arr + id))
-            {
-                id = j;
-            }
-        }
-        swap_values((arr + id), (arr + i));
-    }
-}
-*/
 
 void heapify(int *arr, int len, int i)
 {
