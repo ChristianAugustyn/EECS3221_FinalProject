@@ -41,7 +41,7 @@ int main(int argc, int *argv[]) {
 void fcfs(int *cylinders, int head, int len) 
 {
     FILE *out;
-    out = fopen("out.txt", "a");
+    out = fopen("output.txt", "a");
     int total_moves = 0;
 
     fprintf(out, "\nFCFS Algorithm\nInitial head position = %d\nSeek Sequence is:", head);
@@ -59,15 +59,21 @@ void fcfs(int *cylinders, int head, int len)
 void scan(int *cylinders, int head, int len)
 {
     FILE *out;
-    out = fopen("out.txt", "a");
+    out = fopen("output.txt", "a");
     int total_moves = 0;
     int lc = 0;
     int rc = 0;
     int *left = (int*)malloc(sizeof(int));
     int *right = (int*)malloc(sizeof(int));
 
-    for(int i = 0; i < len; i++){
-        if (*(cylinders + i) <= head) //left of head
+    fprintf(out, "\nSCAN Algorithm\nInitial head position = %d\nSeek Sequence is:", head);
+    for(int i = 0; i < len; i++)
+    {
+        if (*(cylinders + i) == head)
+        {
+            fprintf(out, "\n%d", *(cylinders + i));
+        }
+        else if (*(cylinders + i) < head) //left of head
         {
             left = realloc(left, (lc + 1) * sizeof(int));
             *(left + lc) = *(cylinders + i);
@@ -79,7 +85,6 @@ void scan(int *cylinders, int head, int len)
             rc++;
         }
     }
-    fprintf(out, "\nSCAN Algorithm\nInitial head position = %d\nSeek Sequence is:", head);
     for (int i = lc - 1; i >= 0 ; i--) //go accross the left array
     {
         fprintf(out, "\n%d", *(left + i));
@@ -101,15 +106,21 @@ void scan(int *cylinders, int head, int len)
 void c_scan(int *cylinders, int head, int len)
 {
     FILE *out;
-    out = fopen("out.txt", "a");
+    out = fopen("output.txt", "a");
     int total_moves = 0;
     int lc = 0;
     int rc = 0;
     int *left = (int*)malloc(sizeof(int));
     int *right = (int*)malloc(sizeof(int));
 
-    for(int i = 0; i < len; i++){
-        if (*(cylinders + i) < head) //left of head
+    fprintf(out, "\nC_SCAN Algorithm\nInitial head position = %d\nSeek Sequence is:", head);
+    for(int i = 0; i < len; i++)
+    {
+        if (*(cylinders + i) == head)
+        {
+            fprintf(out, "\n%d", *(cylinders + i));
+        }
+        else if (*(cylinders + i) < head) //left of head
         {
             left = realloc(left, (lc + 1) * sizeof(int));
             *(left + lc) = *(cylinders + i);
@@ -121,7 +132,7 @@ void c_scan(int *cylinders, int head, int len)
             rc++;
         }
     }
-    fprintf(out, "\nC_SCAN Algorithm\nInitial head position = %d\nSeek Sequence is:", head);
+
     for (int i = 0; i < rc; i++)
     {
         fprintf(out, "\n%d", *(right + i));
