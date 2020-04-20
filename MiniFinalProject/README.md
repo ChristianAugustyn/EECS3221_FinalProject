@@ -10,7 +10,7 @@ This Mini Final Project incorporates the knowledge and understanding of chapter 
 3. C-SCAN
 
 ## How to Use
-The name of the input must be ``` input.txt ``` . After every test case, please remove the previously used ```input.txt``` file or replace the contents with the new test case.
+The name of the input must be ``` input.txt ``` . After every test case, please remove the previously used ```input.txt``` file with a new one of the exact name or replace the contents with the new test case.
 
 use the given make file to run the desired main.c file, this will clean the directory of object files created and the output.txt file will be removed:
 
